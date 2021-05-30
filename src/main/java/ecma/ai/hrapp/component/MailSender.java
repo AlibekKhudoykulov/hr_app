@@ -45,6 +45,11 @@ public class MailSender {
         return send(email, text);
     }
 
+    public boolean taskCompleted(String emailTaskGiver,String emailTaskTaker,String taskName) throws MessagingException {
+        String text="Your task completed by "+emailTaskTaker+"</br>"+ " task name:"+taskName;
+        return send(emailTaskGiver,text);
+    }
+
 
 //<a href="http://localhost:80/api/user/verifyEmail?email=official.sah.biz@gmail.com&code02defc1d-481c-4352-aaa5-4d1980d70d6f">Emailni tasdiqlash</a>
 //<br>

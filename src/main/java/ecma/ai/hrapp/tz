@@ -38,7 +38,7 @@ api/user/edit yolida kodni ozgartirishi mumkin boladi
 --Direktor managerlarga va xodimlarga, managerlar esa faqat xodimlarga vazifa biriktira oladi.
 --Har bir vazifa uchun vazifa nomi, vazifa  haqida izoh, vazifaning yakunlanishi kerak bo’lgan vaqti kiritiladi va ushbu vazifaga xodim biriktiriladi.
 --Vazifa biriktirilgan xodimning email manziliga xabar jo’natiladi.
-Shu bilan birga xodimlarning tizimdagi oynasida ushbu vazifalar ko’rinishi kerak.
+--Shu bilan birga xodimlarning tizimdagi oynasida ushbu vazifalar ko’rinishi kerak.
 Xodim vazfani bajarib bo’lgach bajarilganligi haqida belgi qo’yadi va
 ushbu vazifa bajarilganligi haqida vazifa qoygan manager yoki direktorning emailiga xabar boradi.
 

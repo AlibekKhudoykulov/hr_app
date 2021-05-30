@@ -26,4 +26,6 @@ public class TaskDto {
 
     @Enumerated(value = EnumType.STRING)
     private TaskStatus status;
+
+
 }
