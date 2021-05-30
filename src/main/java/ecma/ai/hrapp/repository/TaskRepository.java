@@ -14,4 +14,5 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 //    Optional<User> findByEmail(String email);
 
      List<Task> findAllByTaskTaker(User taskTaker);
+     List<Task> findAllByTaskGiver(User taskGiver);
 }

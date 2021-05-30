@@ -75,8 +75,5 @@ public class UserService {
         } else {
             return new ApiResponse("Xatolik yuz berdi", false);
         }
-
-
-
     }
 }

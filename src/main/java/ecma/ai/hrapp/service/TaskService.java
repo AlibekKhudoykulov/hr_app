@@ -68,8 +68,8 @@ public class TaskService {
             return new ApiResponse("Task saved and not send email", true);
         }
     }
-
-    public List<TaskGetDto> getAllTasks() {
+    //task ni olganlar huquqlar buyicha
+    public List<TaskGetDto> getAllTaskTaker() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Task> allByTaskTaker = taskRepository.findAllByTaskTaker(user);
         List<TaskGetDto> taskDtos = new ArrayList<>();
@@ -82,6 +82,23 @@ public class TaskService {
         }
 
         return taskDtos;
+    }
+    public ApiResponse getTaskFrom(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<User> byId = userRepository.findById(user.getId());
+        if (!byId.isPresent()) return new ApiResponse("User not found",false);
+        User user1 = byId.get();
+        List<Task> allByTaskGiver = taskRepository.findAllByTaskGiver(user1);
+        List<TaskGetDto> taskGetDtos=new ArrayList<>();
+        for (Task task : allByTaskGiver) {
+            TaskGetDto taskGetDto=new TaskGetDto(task.getName(), task.getDescription(),
+                    task.getDeadline(), task.getTaskGiver().getUsername(),
+                    task.getTaskGiver().getEmail(), task.getTaskTaker().getUsername(),
+                    task.getTaskTaker().getEmail(), task.getStatus());
+            taskGetDtos.add(taskGetDto);
+        }
+        return new ApiResponse("Task List",true,taskGetDtos);
+
     }
 
     public ApiResponse completedTask(UUID id, TaskDto taskDto) {

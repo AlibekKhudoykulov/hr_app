@@ -25,10 +25,15 @@ public class TaskController {
         ApiResponse add = taskService.add(taskDto);
         return ResponseEntity.status(add.isSuccess()? HttpStatus.OK:HttpStatus.BAD_REQUEST).body(add);
     }
-    @GetMapping("/get")
-    public HttpEntity<?> get(){
-        List<TaskGetDto> allTasks = taskService.getAllTasks();
+    @GetMapping("/ge/taskTaker")
+    public HttpEntity<?> getTaker(){
+        List<TaskGetDto> allTasks = taskService.getAllTaskTaker();
         return ResponseEntity.ok(allTasks);
+    }
+    @GetMapping("/get/taskGiver")
+    public HttpEntity<?> getGiver(){
+       ApiResponse allTasks = taskService.getTaskFrom();
+        return ResponseEntity.status(allTasks.isSuccess()?200:400).body(allTasks);
     }
     @PostMapping("/{id}")
     public HttpEntity<?> edit(@PathVariable UUID id,@RequestBody TaskDto taskDto){
