@@ -2,6 +2,16 @@ package ecma.ai.hrapp.entity.enums;
 
 
 public enum Month {
-    //Jan
-    //Feb
+    JANUARY,
+    FEBRUARY,
+    MARCH,
+    APRIL,
+    MAY,
+    JUNE,
+    JULY,
+    AUGUST,
+    SEPTEMBER,
+    OCTOBER,
+    NOVEMBER,
+    DECEMBER
 }

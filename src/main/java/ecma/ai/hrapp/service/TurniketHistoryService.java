@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -47,5 +49,24 @@ public class TurniketHistoryService {
         TurniketHistory save = turniketHistoryRepository.save(turniketHistory);
         return new ApiResponse("Welcome",true,save.getTurniket().getOwner());
 
+    }
+    public ApiResponse getAllByDate(String number, Timestamp startTime, Timestamp endTime){
+        Optional<Turniket> optionalTurniket = turniketRepository.findByNumber(number);
+        if (!optionalTurniket.isPresent())
+            return new ApiResponse("Karochchi brat ruxsati yo'q joyga kirmoqchi bo'lyapti! Bunaqa turniket yoq.", false);
+
+        Set<Role> roles = optionalTurniket.get().getOwner().getRoles();
+        String role = RoleName.ROLE_STAFF.name();
+        for (Role role1 : roles) {
+            role = role1.getName().name();
+            break;
+        }
+
+        boolean check = checker.check(role);
+        if (!check)
+            return new ApiResponse("Karochchi brat ruxsatiz yo'q joyga kirmoqchi bo'lyapsiz! Sizda huquq yo'q!", false);
+
+        List<TurniketHistory> historyList = turniketHistoryRepository.findAllByTurniketAndTimeIsBetween(optionalTurniket.get(), startTime, endTime);
+        return new ApiResponse("History list by date",true, historyList);
     }
 }

@@ -5,6 +5,7 @@ import ecma.ai.hrapp.component.MailSender;
 import ecma.ai.hrapp.component.PasswordGenerator;
 import ecma.ai.hrapp.entity.Role;
 import ecma.ai.hrapp.entity.User;
+import ecma.ai.hrapp.entity.enums.RoleName;
 import ecma.ai.hrapp.payload.ApiResponse;
 import ecma.ai.hrapp.payload.UserDto;
 import ecma.ai.hrapp.repository.RoleRepository;
@@ -76,5 +77,23 @@ public class UserService {
         } else {
             return new ApiResponse("Xatolik yuz berdi", false);
         }
+    }
+    public ApiResponse getByEmail(String email){
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (!userOptional.isPresent())
+            return new ApiResponse("Email not found!", false);
+
+        Set<Role> roles = userOptional.get().getRoles();
+        String role = RoleName.ROLE_STAFF.name();
+        for (Role roleName : roles) {
+            role = roleName.getName().name();
+            break;
+        }
+
+        boolean check = checker.check(role);
+        if (!check)
+            return new ApiResponse("You have no such right!", false);
+
+        return new ApiResponse("Get by email!",true,userOptional.get());
     }
 }

@@ -126,4 +126,19 @@ public class TaskService {
         }
         return new ApiResponse("Task edited",true);
     }
+    public ApiResponse getAllByUserAndDate(Timestamp startTime, Timestamp endTime, User user) {
+        Set<Role> roles =user.getRoles();
+        String role = null;
+        for (Role roleName : roles) {
+            role = roleName.getName().name();
+            break;
+        }
+        boolean check = checker.check(role);
+
+        if (!check)
+            return new ApiResponse("Sizda ruxsat mavjud emas!", false);
+
+        List<Task> taskList = taskRepository.findAllByTaskGiverAndCreatedAtBetweenAndStatus(user, startTime, endTime, TaskStatus.COMPLETED);
+        return new ApiResponse("List Task by Date and user!", true, taskList);
+    }
 }

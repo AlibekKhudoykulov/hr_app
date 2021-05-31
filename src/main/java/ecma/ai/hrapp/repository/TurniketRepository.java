@@ -9,5 +9,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface TurniketRepository extends JpaRepository<Turniket, UUID> {
-//    Optional<Turniket> findByEmail(String email);
+    //    Optional<Turniket> findByEmail(String email);
+    Optional<Turniket> findAllByOwner(User owner);
+
+    Optional<Turniket> findByNumber(String number);
+
 }

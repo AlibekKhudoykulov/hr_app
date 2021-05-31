@@ -13,5 +13,5 @@ import java.util.UUID;
 public interface TurniketHistoryRepository extends JpaRepository<TurniketHistory, UUID> {
 //    Optional<User> findByEmail(String email);
 //        List<TurniketHistory> findAllByTurniket(Turniket turniket);
-//        List<TurniketHistory> findAllByTurniketAndTimeBetween(Turniket turniket, Timestamp time, Timestamp time2);
+        List<TurniketHistory> findAllByTurniketAndTimeIsBetween(Turniket turniket, Timestamp time, Timestamp time2);
 }
