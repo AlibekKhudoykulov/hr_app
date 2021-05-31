@@ -6,10 +6,7 @@ import ecma.ai.hrapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -30,4 +27,10 @@ public class UserController {
         ApiResponse response = userService.add(userDto);
         return ResponseEntity.status(response.isSuccess() ? 200 : 409).body(response);
     }
+    @GetMapping
+    public HttpEntity<?> getByEmail(@RequestParam String email){
+        ApiResponse apiResponse = userService.getByEmail(email);
+        return ResponseEntity.status(apiResponse.isSuccess()?200:409).body(apiResponse);
+    }
+
 }
