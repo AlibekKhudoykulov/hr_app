@@ -47,8 +47,8 @@ api/user/edit yolida kodni ozgartirishi mumkin boladi
 Turniket
 --Xodimlar ish vaqtini belgilash uchun korxonaga turniket qo’yiladi.
 --Turniketning kirish va chiqish tomoni bo’ladi.
-Turniketning qaysi tomonidan scanner qilinganiga korxonaga kirgan yoki chiqqan vaqt haqida malumotlar 
-qayd etib borilishi kerak.
+--Turniketning qaysi tomonidan scanner qilinganiga korxonaga kirgan yoki chiqqan vaqt haqida malumotlar
+--qayd etib borilishi kerak.
 
 
 

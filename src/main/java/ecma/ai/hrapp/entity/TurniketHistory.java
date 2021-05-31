@@ -23,8 +23,8 @@ public class TurniketHistory {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    @OneToMany
-    private List<Turniket> turniketList;//karta
+    @ManyToOne
+    private Turniket turniket;//karta
 
     @Enumerated(EnumType.STRING)
     private TurniketType type;

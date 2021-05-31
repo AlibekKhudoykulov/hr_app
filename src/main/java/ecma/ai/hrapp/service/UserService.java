@@ -35,7 +35,8 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     @Autowired
     MailSender mailSender;
-
+    @Autowired
+    TurniketService turniketService;
 
     public ApiResponse add(UserDto userDto) throws MessagingException {
         Optional<Role> optionalRole = roleRepository.findById(userDto.getRoleId());
@@ -65,8 +66,8 @@ public class UserService {
         String code = UUID.randomUUID().toString();
         user.setVerifyCode(code);
 
-        userRepository.save(user);
-
+        User save = userRepository.save(user);
+        turniketService.add(1,save.getId());
         //mail xabar yuborish kk
         boolean addStaff = mailSender.mailTextAddStaff(userDto.getEmail(), code, password);
 

@@ -41,7 +41,26 @@ public class Checker {
         }
         return false;
     }
+    public boolean checkForGetStaff() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+
+        if (optionalUser.isPresent()) {
+            Set<Role> roles = optionalUser.get().getRoles();
+            String position = optionalUser.get().getPosition();
+            for (Role adminRole : roles) {
+                if (adminRole.getName().name().equals(RoleName.ROLE_DIRECTOR.name())) {
+                    return true;
+                }else if (adminRole.getName().name().equals(RoleName.ROLE_MANAGER.name())) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 
 
 }

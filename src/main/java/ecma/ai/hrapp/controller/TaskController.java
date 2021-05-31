@@ -1,6 +1,6 @@
 package ecma.ai.hrapp.controller;
 
-import ecma.ai.hrapp.entity.Task;
+
 import ecma.ai.hrapp.payload.ApiResponse;
 import ecma.ai.hrapp.payload.TaskDto;
 import ecma.ai.hrapp.payload.TaskGetDto;
@@ -25,7 +25,7 @@ public class TaskController {
         ApiResponse add = taskService.add(taskDto);
         return ResponseEntity.status(add.isSuccess()? HttpStatus.OK:HttpStatus.BAD_REQUEST).body(add);
     }
-    @GetMapping("/ge/taskTaker")
+    @GetMapping("/get/taskTaker")
     public HttpEntity<?> getTaker(){
         List<TaskGetDto> allTasks = taskService.getAllTaskTaker();
         return ResponseEntity.ok(allTasks);
